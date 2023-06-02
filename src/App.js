@@ -1,6 +1,10 @@
 
 import Productos from './components/Productos'
+import Layout from './components/Layout';  // este componente se va encargar de centar el contenido
+import Title from './components/Title';
+import Navbar from './components/Navbar';
 import { Component } from 'react';
+
 
 class App extends Component {
   state = {
@@ -13,11 +17,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Productos 
-        agregarAlCarro={() => console.log('adad')}
-        productos={this.state.productos}
-        />
-        <p>Hola mundo</p>
+        <Navbar />
+        <Layout>
+          <Title />
+          <Productos 
+          agregarAlCarro={() => console.log('adad')}
+          productos={this.state.productos}
+          />
+          <p>Hola mundo</p>
+        </Layout>
+       
       </div>
     )
   }
