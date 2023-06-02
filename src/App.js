@@ -1,13 +1,13 @@
-import logo from './logo.svg';
+
 import Productos from './components/Productos'
 import { Component } from 'react';
 
 class App extends Component {
   state = {
     productos: [
-      { name: 'tomate', price: 1500, img: '/productos/tomate.jpg'},
-      { name: 'Arberjas', price: 2500, img: '/productos/arberjas.jpg'},
-      { name: 'Lechuga', price: 500, img: '/productos/lechuga.jpg'},
+      { name: 'tomate', price: 1500, img: '/productos/tomate.png'},
+      { name: 'Arberjas', price: 2500, img: '/productos/arberjas.png'},
+      { name: 'Lechuga', price: 500, img: '/productos/lechuga.png'},
     ]
   }
   render() {
