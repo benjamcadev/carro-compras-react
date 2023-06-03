@@ -12,17 +12,47 @@ class App extends Component {
       { name: 'tomate', price: 1500, img: '/productos/tomate.png'},
       { name: 'Arberjas', price: 2500, img: '/productos/arberjas.png'},
       { name: 'Lechuga', price: 500, img: '/productos/lechuga.png'},
-    ]
+    ],
+    carro: [],
+    esCarroVisible: false,
   }
+
+  agregarAlCarro = (producto) => {
+    //Validar si en el carro existe ya el mismo producto que se esta agregando
+    const { carro } = this.state
+    if (carro.find(x => x.name === producto.name)) {
+      // Si se encuentra debe aumentar la cantidad
+      const newCarro = carro.map(x => x.name === producto.name ? ({...x, cantidad: x.cantidad + 1}) : x)
+      return this.setState({ carro: newCarro })
+    }
+
+    return this.setState({
+      carro: this.state.carro.concat({...producto,cantidad: 1,})
+    })
+  }
+
+  mostrarCarro = () => {
+    if (!this.state.carro.length) { // Si no hay elementos en el carro que no lo muestre al pinchar el carro
+      return
+    }
+    this.setState({ esCarroVisible: !this.state.esCarroVisible })
+  }
+
   render() {
+    const { esCarroVisible } = this.state
+
     return (
       <div>
-        <Navbar />
+        <Navbar 
+          carro={this.state.carro} 
+          esCarroVisible={esCarroVisible} 
+          mostrarCarro={this.mostrarCarro}
+        />
         <Layout>
           <Title />
           <Productos 
-          agregarAlCarro={() => console.log('adad')}
-          productos={this.state.productos}
+            agregarAlCarro={this.agregarAlCarro}
+            productos={this.state.productos}
           />
           <p>Hola mundo</p>
         </Layout>
